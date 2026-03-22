@@ -2,8 +2,8 @@ services:
   - type: web
     name: xtts-streaming-server
     env: docker
-    dockerContext: server
-    dockerfilePath: Dockerfile.cpu
+    dockerContext: .
+    dockerfilePath: server/Dockerfile.cpu
     plan: starter # You might need a more powerful plan for TTS
     region: ohio # Change to your preferred region
     healthCheckPath: /docs # FastAPI default docs as a health check
