@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: xtts-streaming-server
+    env: docker
+    dockerContext: server
+    dockerfilePath: Dockerfile.cpu
+    plan: starter # You might need a more powerful plan for TTS
+    region: ohio # Change to your preferred region
+    healthCheckPath: /docs # FastAPI default docs as a health check
+    envVars:
+      - key: COQUI_TOS_AGREED
+        value: "1"
+      - key: USE_CPU
+        value: "1"
+      - key: NUM_THREADS
+        value: "4"
+    disk:
+      name: tts-models
+      mountPath: /app/tts_models
+      sizeGB: 10
