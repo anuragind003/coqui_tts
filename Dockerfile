@@ -6,14 +6,14 @@ RUN apt-get update && \
     apt-get clean && apt-get -y autoremove
 
 WORKDIR /app
-COPY requirements_cpu.txt .
+COPY server/requirements_cpu.txt .
 RUN python -m pip install --use-deprecated=legacy-resolver -r requirements_cpu.txt \
     && python -m pip cache purge
 
 RUN python -m unidic download
 RUN mkdir -p /app/tts_models
 
-COPY main.py .
+COPY server/main.py .
 ENV USE_CPU=1
 
 EXPOSE 80
